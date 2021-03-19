@@ -26,15 +26,15 @@ def Prim(graphe,s):
     for i in graphe.keys():
         acm[i] = []                                                             #Création du graphe à renvoyer
         for j in range(len(graphe[i])):
-            f.insert([graphe[i][j][1],i,graphe[i][j][0]])                       #Création du Heap
+            f.entasse([graphe[i][j][1],i,graphe[i][j][0]])                       #Création du Heap
 
     vus = [s]
     waiting = []
     while len(vus) != len(graphe):                                              #Exploitation du Heap pour résoudre le problème
-        value = f.shorten()
+        value = f.minimum()
         if value == None:                                                           #i.e Si le Heap est vide
             for elem in waiting:
-                f.insert(elem)
+                f.entasse(elem)
             waiting = []
         elif (value[1] in vus) != (value[2] in vus):                                #i.e Sinon si un sommest est dans vus et l'autre non
             acm[value[1]].append((value[2],value[0]))
